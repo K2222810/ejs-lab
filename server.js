@@ -61,8 +61,25 @@ app.get('/menu', (req, res) => {
   res.render('menu', { menu: RESTAURANT.menu });
 });
 
+// category route
+//copy by noa 
+app.get('/menu/:category', (req, res) => {
 
+  const category = req.params.category; 
+  const menuItems = RESTAURANT.menu.filter(item => item.category === category); 
+  res.render('category.ejs', { menuItems,
+    name: category
+
+  })
+
+}); 
 
 app.listen(3000, () => {
   console.log('Server running on port 3000');
 });
+
+
+/* <h2>
+    <%= restaurant.isOpen ? "We are open!" : "We are closed." %>
+</h2>>
+*/
